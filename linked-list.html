@@ -20,6 +20,7 @@
 
             this.getList = function () { return head }
 
+
             this.append = function (data) {
                 const node = new Node(data)
                 let p = head
@@ -36,9 +37,9 @@
             }
 
             this.insert = function (position, data) {
-                const node = new Node(data)
+                const node = new Node(data) // 1 unit_time
 
-                if (position > 0 && position <= length) {
+                if (position > 0 && position <= length) { // length unit_time
                     if (position === 0) {
                         node.next = head
                         head = node
@@ -53,13 +54,44 @@
                         prev.next = node
                         node.next = cur
                     }
-
                     length++
                 } else {
                     return null
                 }
 
             }
+
+
+            /**
+             * @param {Number | String} element
+             * @return {Boolean}
+            */
+            this.search = function (data) {
+                let p = head // 1 unit_time
+
+                if (!p) return false // 1 unit_time
+                while (p) { // length unit_time
+                    if (p.data === data) return true
+
+                    p = p.next 
+                }
+                return false
+            }
+            // T = 2 + n 
+            // O(n)
+
+
+            this.remove = function (data) {
+                let p = head // 1 unit_time
+                while(p) { // length unit_time
+                    if(p.data === data){
+                        return true
+                    }
+                    p = p.next
+                }
+            }
+            // O(n)
+
         }
 
 
