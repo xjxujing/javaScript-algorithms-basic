@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function List() {
+            let Node = function (data) {
+                this.data = data
+                this.next = null
+            }
+
+            let head = null, length = 0
+
+            this.getList = function () { return head }
+
+            this.append = function (data) {
+                const node = new Node(data)
+                let p = head
+
+                if (!head) {
+                    head = node
+                } else {
+                    while (p.next) { p = p.next }
+                    p.next = node
+
+                }
+                length++
+                return head
+            }
+
+            this.insert = function (position, data) {
+                const node = new Node(data)
+
+                if (position > 0 && position <= length) {
+                    if (position === 0) {
+                        node.next = head
+                        head = node
+                    } else {
+                        let index = 1
+                        let prev = head, cur = head
+                        while (index < position) {
+                            prev = cur
+                            cur = prev.next
+                            index++
+                        }
+                        prev.next = node
+                        node.next = cur
+                    }
+
+                    length++
+                } else {
+                    return null
+                }
+
+            }
+        }
+
+
+        let list = new List()
+        for (let i = 0; i < 5; i += 1) {
+            list.append(i)
+        }
+
+    </script>
+</body>
+
+</html>
